@@ -2,8 +2,6 @@
 
 FlashcardHero is a modern web application for creating and studying flashcards. Built with React, TypeScript, and Firebase, it offers a seamless learning experience with features like public and private collections, practice mode, and real-time updates.
 
-![FlashcardHero Logo](public/vite.svg)
-
 ## Features
 
 - **User Authentication**
