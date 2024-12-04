@@ -18,6 +18,11 @@ export const CreateCollectionModal: React.FC<CreateCollectionModalProps> = ({
 }) => {
   const navigate = useNavigate();
 
+  const handleSuccess = () => {
+    onClose();
+    onCollectionCreated();
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="space-y-6">
@@ -41,7 +46,7 @@ export const CreateCollectionModal: React.FC<CreateCollectionModalProps> = ({
             Open in Full Page
           </Button>
         </div>
-        <CollectionForm onSuccess={onCollectionCreated} onCancel={onClose} />
+        <CollectionForm onSuccess={handleSuccess} onCancel={onClose} />
       </div>
     </Modal>
   );
