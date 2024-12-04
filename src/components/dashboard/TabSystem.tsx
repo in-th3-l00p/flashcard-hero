@@ -16,7 +16,7 @@ interface TabSystemProps {
 export const TabSystem: React.FC<TabSystemProps> = ({ tabs, activeTab, onTabChange }) => {
   return (
     <div className="border-b border-teal-100">
-      <nav className="-mb-px flex space-x-8">
+      <nav className="-mb-px flex overflow-x-auto">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           return (
@@ -24,7 +24,7 @@ export const TabSystem: React.FC<TabSystemProps> = ({ tabs, activeTab, onTabChan
               key={tab.id}
               onClick={() => onTabChange(tab.id)}
               className={cn(
-                'flex items-center border-b-2 px-1 py-4 text-sm font-medium transition-colors',
+                'flex shrink-0 items-center border-b-2 px-4 py-4 text-sm font-medium transition-colors whitespace-nowrap',
                 activeTab === tab.id
                   ? 'border-teal-500 text-teal-600'
                   : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
