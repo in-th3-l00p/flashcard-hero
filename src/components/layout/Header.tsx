@@ -8,7 +8,7 @@ import { useAuth } from '../../contexts/AuthContext';
 export const Header: React.FC = () => {
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
-
+  
   const handleLogout = async () => {
     try {
       await logout();

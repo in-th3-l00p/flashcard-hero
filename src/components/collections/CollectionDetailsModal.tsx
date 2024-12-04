@@ -122,11 +122,11 @@ export const CollectionDetailsModal: React.FC<CollectionDetailsModalProps> = ({
             </Button>
           </div>
 
-          <div className="max-h-[60vh] space-y-4 overflow-y-auto rounded-lg border border-gray-200 p-4">
-            <h3 className="sticky top-0 bg-white pb-2 text-lg font-semibold text-gray-900">
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-900">
               Flashcards ({collection.flashcards.length})
             </h3>
-            <div className="space-y-4">
+            <div className="max-h-[60vh] space-y-4 overflow-y-auto rounded-lg border border-gray-200 p-4">
               {collection.flashcards.map((flashcard, index) => (
                 <div
                   key={index}

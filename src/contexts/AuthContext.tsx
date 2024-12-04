@@ -6,7 +6,7 @@ import {
   signInWithPopup,
   signOut,
   onAuthStateChanged,
-  updateProfile
+  updateProfile as firebaseUpdateProfile
 } from 'firebase/auth';
 import { auth, googleProvider } from '../lib/firebase';
 
@@ -17,6 +17,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>;
   loginWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
+  updateProfile: (displayName: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -44,7 +45,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signup = async (email: string, password: string, username: string) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    await updateProfile(userCredential.user, {
+    await firebaseUpdateProfile(userCredential.user, {
       displayName: username
     });
     setCurrentUser({ ...userCredential.user, displayName: username });
@@ -62,13 +63,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     await signOut(auth);
   };
 
+  const updateProfile = async (displayName: string) => {
+    if (!currentUser) throw new Error('No user logged in');
+    await firebaseUpdateProfile(currentUser, { displayName });
+    setCurrentUser(auth.currentUser);
+  };
+
   const value = {
     currentUser,
     loading,
     signup,
     login,
     loginWithGoogle,
-    logout
+    logout,
+    updateProfile
   };
 
   return (
